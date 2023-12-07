@@ -1,0 +1,20 @@
+<ng-container *ngIf="isAuthenticated">
+  <!-- Toolbar -->
+  <div class="toolbar" role="banner">
+    <span style="flex-basis:20%;padding-left:10px;">Recover Backups</span>
+    <div class="spacer"></div>
+    <mat-nav-list style="flex-basis:30%;display:flex;flex-direction:row;">
+      <a mat-list-item [routerLink]="'/recover-files'" style="flex-basis:50%;">Files</a>
+      <a mat-list-item [routerLink]="'/recover-db'" style="flex-basis:50%;">Database</a>  
+    </mat-nav-list>
+    <button mat-icon-button (click)="logout()" style="flex-basis: 10%;"><mat-icon>logout</mat-icon></button>
+  </div>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  </ng-container>
+
+<ng-container *ngIf="!isAuthenticated">
+  <router-outlet></router-outlet>
+</ng-container>
