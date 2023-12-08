@@ -5,21 +5,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'ISP Files Recovery';
-  username = '';
-  isAuthenticated: boolean = false;
 
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     private router: Router
   ) {}
-
-  ngOnInit() {
-    
-  }
 
   logout() {
     this.authService.logout();

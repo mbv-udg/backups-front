@@ -1,17 +1,23 @@
-<div class="container">
-    <div class="row justify-content-center mt-5">
-      <div class="col-md-6">
-        <form [formGroup]="form" (ngSubmit)="login()">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" formControlName="username" placeholder="Enter username">
-          </div>
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" class="form-control" id="password" formControlName="password" placeholder="Password">
-          </div>
-          <button type="submit" class="btn btn-primary" style="margin-top: 6px;">Login</button>
-        </form>
+<div class="login-form-flex">
+  <mat-card style="margin:1%">
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="login()">
+        <mat-form-field style="margin-bottom:10px">
+          <input matInput type="text" formControlName="username" placeholder="Username" required>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+      <br/>
+        <mat-form-field>
+          <input matInput type="password" formControlName="password" placeholder="Password" required>
+          <mat-error>Required</mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="button-flex-container">
+        <button mat-raised-button (click)="login()" color="primary">Send</button>      
       </div>
-    </div>
-  </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

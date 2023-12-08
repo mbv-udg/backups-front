@@ -1,4 +1,4 @@
-<ng-container *ngIf="isAuthenticated">
+<ng-container *ngIf="this.authService.isUserLoggedIn()">
   <!-- Toolbar -->
   <div class="toolbar" role="banner">
     <span style="flex-basis:20%;padding-left:10px;">Recover Backups</span>
@@ -15,6 +15,6 @@
   </div>
   </ng-container>
 
-<ng-container *ngIf="!isAuthenticated">
+<ng-container *ngIf="!this.authService.isUserLoggedIn()">
   <router-outlet></router-outlet>
 </ng-container>
