@@ -15,8 +15,9 @@
       </form>
     </mat-card-content>
     <mat-card-actions>
-      <div class="button-flex-container">
-        <button mat-raised-button (click)="login()" color="primary" [disabled]="!this.form.valid">Send</button>      
+      <div class="actions">
+        <button mat-raised-button (click)="login()" color="primary" [disabled]="!this.form.valid || this.loading">Send</button>   
+        <mat-spinner *ngIf="this.loading" [diameter]="25" class="spinner"></mat-spinner>   
       </div>
     </mat-card-actions>
   </mat-card>

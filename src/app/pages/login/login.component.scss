@@ -22,3 +22,16 @@ mat-card-content {
   justify-content: center;
   margin: 5%;
 }
+
+mat-card-title {
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.spinner {
+  margin: auto 15px;
+}

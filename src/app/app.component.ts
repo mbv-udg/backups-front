@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ISP Files Recovery';
+  title = 'Recover Backups';
 
   constructor(
     public authService: AuthService,

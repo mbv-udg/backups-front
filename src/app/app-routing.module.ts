@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { RecoverFilesComponent } from './pages/recover-files/recover-files.component';
 import { AuthGuard } from './auth.guard';
+import { RecoverDbComponent } from './pages/recover-db/recover-db.component';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'recover-db',
-    component: RecoverFilesComponent,
+    component: RecoverDbComponent,
     canActivate: [AuthGuard]
   },
   {
