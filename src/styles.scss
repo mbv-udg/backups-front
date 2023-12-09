@@ -1,1 +1,44 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
+// Definició de variables de color
+$color-primary: rgb(44, 80, 240); // Blau principal
+$color-secondary: #2980b9; // Blau secundari
+$color-accent: #5fa8d3; // Blau d'accent
+
+// Estil global
+body {
+  font-family: -apple-system, sans-serif;
+  background-color: #ecf0f1; // Fons gris clar
+  color: #34495e; // Text color
+}
+
+// Contingut principal
+.content {
+  padding: 2rem;
+}
+
+//Toolbar
+.toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: $color-primary;
+    font-weight: 600;
+    color: #ffffff
+}
+
+// Botons
+.button {
+  padding: 0.5rem 1rem;
+  background-color: $color-primary;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: transparent;
+  }
+}

@@ -29,6 +29,7 @@ export class LoginComponent {
     this.authService.login(username, psswd)
     .subscribe({
       next: (result) => {
+        localStorage.setItem("token", result.data.token);
         this.router.navigate(['/recover-files'])
       },
       error: (error) => {

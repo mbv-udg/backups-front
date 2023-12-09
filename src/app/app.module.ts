@@ -15,6 +15,7 @@ import { RecoverFilesComponent } from './pages/recover-files/recover-files.compo
 import { LoginComponent } from './pages/login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthGuard } from './auth.guard';
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -7,7 +7,7 @@ import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'recover-files',
     pathMatch: 'full'
   },
   {

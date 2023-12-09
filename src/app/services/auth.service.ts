@@ -1,17 +1,24 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Login } from '../models/login';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  server = environment.baseUrl;
 
-  login(username: string, password: string): Observable<boolean> {
-    //fer la crida
-    localStorage.setItem("token", "ergeromgerpog");
-    return new Observable<boolean>(); //TODO:
+  constructor(private httpClient: HttpClient) { }
+
+  login(username: string, password: string): Observable<Login> {
+    let body = {
+      "username": username,
+      "password": password
+    }
+    return this.httpClient.post(this.server+'/login', body) as Observable<Login>;
   }
 
   logout(): void {

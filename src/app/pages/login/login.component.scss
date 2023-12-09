@@ -1,23 +1,24 @@
 :host {
-    display: flex;
-    justify-content: center;
-    margin: 100px 0px;
-  }
+  display: flex;
+  justify-content: center;
+  margin: 100px 0px;
+}
 
-  .mat-form-field {
-    min-width: 300px;
-    margin-right: 10px;
-    margin-left: 10px;
-  }
+.mat-form-field {
+  min-width: 300px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
 
-  mat-card {
-    padding: 15px;
-    border-radius: 5%;
-  }
+mat-card {
+  padding: 15px;
+  border-radius: 5%;
+  margin: 1%;
+}
 
-  mat-card-title,
-  mat-card-content {
-    display: flex;
-    justify-content: center;
-    margin: 5%;
-  }
+mat-card-title,
+mat-card-content {
+  display: flex;
+  justify-content: center;
+  margin: 5%;
+}
