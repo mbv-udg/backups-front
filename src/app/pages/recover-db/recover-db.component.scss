@@ -1,0 +1,29 @@
+.container {
+    padding-top: 2%;
+}
+
+mat-table {
+    margin: 5% auto;
+    width: 95%;
+}
+
+.mat-column-date {
+    padding-left: 5%;
+    flex: 3;
+}
+
+.mat-column-actions {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.no-button {
+    border: none;
+    border-radius: 20%;
+    background-color: transparent;
+}
+
+.no-button:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
