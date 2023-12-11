@@ -34,6 +34,7 @@ export class RecoverDbComponent implements OnInit {
     this.mainService.getDbBackups()
     .subscribe({
       next: (response: BackupsResponse) => {
+        this.backupsList = [];
         response.data.forEach((e) => {
           let el: Backup = {
             code: e,

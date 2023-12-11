@@ -22,6 +22,7 @@ export class RecoverFilesComponent implements OnInit  {
 
   filesList: BackupFile[] = [];
   path: string = '';
+  selectedBackup: string = '';
 
   constructor(
     private mainService: MainService,
@@ -38,6 +39,7 @@ export class RecoverFilesComponent implements OnInit  {
     this.mainService.getFileBackups()
     .subscribe({
       next: (response: BackupsResponse) => {
+        this.backupsList = [];
         response.data.forEach((e) => {
           let el: Backup = {
             code: e,
@@ -47,7 +49,6 @@ export class RecoverFilesComponent implements OnInit  {
         });
 
         this.dataSource = new MatTableDataSource(this.backupsList);
-
         this.loading = false;
       },
       error: (error) => {
@@ -57,8 +58,34 @@ export class RecoverFilesComponent implements OnInit  {
     })
   }
 
+  enterBackup(name: string) {
+    this.selectedBackup = name;
+    this.enterFolder('');
+  }
+
   enterFolder(name: string) {
-    
+    this.loading = true; //Mirar els casos en que name i path siguin ''
+    this.mainService.getFiles(this.selectedBackup, this.path+'/'+name)
+    .subscribe({
+      next: (response: BackupsResponse) => {
+        this.filesList = [];
+        response.data.forEach(e => {
+          let el: BackupFile = {
+            name: e.slice(-1) === '/' ? e.slice(e.length-2) : e,
+            path: this.path,
+            isDir: e.slice(-1) === '/'
+          }
+        });
+
+        this.dataSource = new MatTableDataSource(this.backupsList);
+        this.loading = false;
+
+      },
+      error: (error) => {
+        this.snackbar.open('ERROR retrieving the folder', 'OK');
+        this.loading = false;
+      }
+    })
   }
 
   recoverFiles(name: string) {

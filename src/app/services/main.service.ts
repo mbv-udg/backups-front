@@ -30,6 +30,14 @@ export class MainService {
     return this.httpClient.get(this.server+'/db', { headers: headers}) as Observable<BackupsResponse>;
   }
 
+  getFiles(bckp: string, dir: string = ''): Observable<BackupsResponse> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+localStorage.getItem('token')
+    });
+    return this.httpClient.get(this.server+'/backups/'+bckp+'/'+dir, { headers: headers}) as Observable<BackupsResponse>;
+  }
+
   recoverDb(nameB: string): Observable<GenericResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
