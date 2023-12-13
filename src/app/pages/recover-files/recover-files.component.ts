@@ -64,20 +64,27 @@ export class RecoverFilesComponent implements OnInit  {
   }
 
   enterFolder(name: string) {
-    this.loading = true; //Mirar els casos en que name i path siguin ''
-    this.mainService.getFiles(this.selectedBackup, this.path+'/'+name)
+    this.loading = true;
+    let dir = this.path;
+    dir += !!this.path && !!name ? '/' : '';
+    dir += !!name ? name : '';
+
+    this.mainService.getFiles(this.selectedBackup, dir)
     .subscribe({
       next: (response: BackupsResponse) => {
         this.filesList = [];
         response.data.forEach(e => {
           let el: BackupFile = {
-            name: e.slice(-1) === '/' ? e.slice(e.length-2) : e,
+            name: e.slice(-1) === '/' ? e.slice(0,e.length-1) : e,
             path: this.path,
             isDir: e.slice(-1) === '/'
           }
+          this.filesList.push(el);
         });
 
-        this.dataSource = new MatTableDataSource(this.backupsList);
+        this.path = dir;
+
+        this.dataSource = new MatTableDataSource(this.filesList);
         this.loading = false;
 
       },
@@ -88,9 +95,21 @@ export class RecoverFilesComponent implements OnInit  {
     })
   }
 
-  recoverFiles(name: string) {
+  recoverFiles(name: string, isBackup: boolean = false) {
     this.loading = true;
-    this.mainService.recoverFiles(name, '', '')
+    let bck: string = '';
+    let dir: string = '';
+    let nom: string = '';
+    if(isBackup) {
+      bck = name;
+    }
+    else {
+      bck = this.selectedBackup;
+      dir = this.path;
+      nom = name;
+    }
+
+    this.mainService.recoverFiles(bck, dir, nom)
     .subscribe({
       next: (response: GenericResponse) => {
         this.snackbar.open('Backup recovered successfully!', 'OK')
@@ -103,5 +122,24 @@ export class RecoverFilesComponent implements OnInit  {
     })
   }
 
+  goBack() {
+    this.loading = true;
+    if(this.path === '') {
+      this.selectedBackup = '';
+      this.loadBackups();
+    }
+    else {
+      let list = this.path.split('/');
+      if(list.length>1) {
+        let aux = list.pop();
+        if(!!aux) this.path = aux.toString();
+      }
+      else {
+        this.path = '';
+      }
+      this.enterFolder('');
+    }
+
+  }
 
 }

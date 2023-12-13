@@ -35,7 +35,10 @@ export class MainService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+localStorage.getItem('token')
     });
-    return this.httpClient.get(this.server+'/backups/'+bckp+'/'+dir, { headers: headers}) as Observable<BackupsResponse>;
+    let body = {
+      name: dir
+    }
+    return this.httpClient.post(this.server+'/'+bckp, body, { headers: headers}) as Observable<BackupsResponse>;
   }
 
   recoverDb(nameB: string): Observable<GenericResponse> {
@@ -56,8 +59,8 @@ export class MainService {
     });    
     let body = {
       backup: bckp,
-      dir: direct,
-      file: file
+      dir: !!direct ? direct : '.',
+      file: !!file ? file : '.'
     }
     return this.httpClient.post(this.server+'/recover/files', body, {headers: headers}) as Observable<GenericResponse>;
   }
