@@ -33,6 +33,8 @@ export class LoginComponent {
     .subscribe({
       next: (result) => {
         localStorage.setItem("token", result.data.token);
+        localStorage.setItem("refreshToken", result.data.refreshToken);
+        
         this.router.navigate(['/recover-files'])
         this.loading = false;
       },

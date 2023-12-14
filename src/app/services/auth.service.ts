@@ -21,6 +21,13 @@ export class AuthService {
     return this.httpClient.post(this.server+'/login', body) as Observable<Login>;
   }
 
+  refreshToken(): Observable<Login> {
+    let body = {
+      "refreshToken": localStorage.getItem("refreshToken")
+    }
+    return this.httpClient.post(this.server+'/token', body) as Observable<Login>;
+  }
+
   logout(): void {
     localStorage.removeItem("token");
   }

@@ -1,6 +1,7 @@
 export interface Login {
     status: boolean,
     data : {
-        token: string
+        token: string,
+        refreshToken: string
     }
 }

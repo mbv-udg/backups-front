@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { EventData } from 'src/app/helpers/EventData';
+import { EventBusService } from 'src/app/helpers/event.service';
 import { Backup } from 'src/app/models/backup';
 import { BackupFile } from 'src/app/models/backupFile';
 import { BackupsResponse } from 'src/app/models/backupsResponse';
@@ -27,7 +29,8 @@ export class RecoverFilesComponent implements OnInit  {
   constructor(
     private mainService: MainService,
     private namePipe: BackupNamePipe,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private eventBusService: EventBusService
   ) {}
 
   ngOnInit() {
@@ -52,6 +55,9 @@ export class RecoverFilesComponent implements OnInit  {
         this.loading = false;
       },
       error: (error) => {
+        if (error.status === 403)
+          this.eventBusService.emit(new EventData('logout', null));
+
         this.snackbar.open('ERROR retrieving the backups', 'OK')
         this.loading = false;
       }
@@ -89,6 +95,9 @@ export class RecoverFilesComponent implements OnInit  {
 
       },
       error: (error) => {
+        if (error.status === 403)
+          this.eventBusService.emit(new EventData('logout', null));
+
         this.snackbar.open('ERROR retrieving the folder', 'OK');
         this.loading = false;
       }
@@ -116,6 +125,9 @@ export class RecoverFilesComponent implements OnInit  {
         this.loading = false;
       },
       error: (error) => {
+        if (error.status === 403)
+          this.eventBusService.emit(new EventData('logout', null));
+        
         this.snackbar.open('ERROR recovering backup', 'OK')
         this.loading = false;
       }
