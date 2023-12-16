@@ -52,7 +52,7 @@
                     <button *ngIf="element.isDir" class="no-button" (click)="enterFolder(element.name)" [disabled]="this.loading">
                         <mat-icon>login</mat-icon>
                     </button>
-                    <button class="no-button" (click)="recoverFiles(element.name, false)" [disabled]="this.loading">
+                    <button class="no-button" (click)="recoverFiles(element.name, false, element.isDir)" [disabled]="this.loading">
                         <mat-icon>restart_alt</mat-icon>
                     </button>
                 </mat-cell>

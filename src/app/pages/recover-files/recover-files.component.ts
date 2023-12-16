@@ -104,7 +104,7 @@ export class RecoverFilesComponent implements OnInit  {
     })
   }
 
-  recoverFiles(name: string, isBackup: boolean = false) {
+  recoverFiles(name: string, isBackup: boolean = false, isDir: boolean = true) {
     this.loading = true;
     let bck: string = '';
     let dir: string = '';
@@ -118,7 +118,7 @@ export class RecoverFilesComponent implements OnInit  {
       nom = name;
     }
 
-    this.mainService.recoverFiles(bck, dir, nom)
+    this.mainService.recoverFiles(bck, dir, nom, isDir)
     .subscribe({
       next: (response: GenericResponse) => {
         this.snackbar.open('Backup recovered successfully!', 'OK')

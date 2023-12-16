@@ -52,7 +52,7 @@ export class MainService {
     return this.httpClient.post(this.server+'/recover/db', body, {headers: headers}) as Observable<GenericResponse>;
   }
 
-  recoverFiles(bckp: string, direct: string, file: string): Observable<GenericResponse> {
+  recoverFiles(bckp: string, direct: string, file: string, isDir: boolean): Observable<GenericResponse> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+localStorage.getItem('token')
@@ -60,7 +60,8 @@ export class MainService {
     let body = {
       backup: bckp,
       dir: !!direct ? direct : '.',
-      file: !!file ? file : '.'
+      file: !!file ? file : '.',
+      isDir: isDir
     }
     return this.httpClient.post(this.server+'/recover/files', body, {headers: headers}) as Observable<GenericResponse>;
   }
